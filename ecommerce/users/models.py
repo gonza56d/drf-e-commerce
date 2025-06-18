@@ -4,10 +4,11 @@ from django.db import models
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email: str, password: str, is_admin: bool = False):
+    def create_user(self, email: str, password: str, is_admin: bool = False) -> 'User':
         user = User(email=email, is_staff=is_admin, is_superuser=is_admin)
         user.set_password(password)
         user.save()
+        return user
 
 
 class User(AbstractUser):

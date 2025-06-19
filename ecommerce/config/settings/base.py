@@ -29,7 +29,7 @@ SECRET_KEY = environ.get('DJANGO_SECRET_KEY')
 
 THIRD_PARTY_APPS = []
 ECOMMERCE_APPS = [
-    'ecommerce.auth.apps.AuthConfig',
+    'ecommerce.authentication.apps.AuthenticationConfig',
     'ecommerce.cart.apps.CartsConfig',
     'ecommerce.orders.apps.OrdersConfig',
     'ecommerce.profiles.apps.ProfilesConfig',

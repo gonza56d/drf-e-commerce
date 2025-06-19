@@ -28,7 +28,13 @@ SECRET_KEY = environ.get('DJANGO_SECRET_KEY')
 # Application definition
 
 THIRD_PARTY_APPS = []
-ECOMMERCE_APPS = ["ecommerce.users.apps.UsersConfig"]
+ECOMMERCE_APPS = [
+    'ecommerce.auth.apps.AuthConfig',
+    'ecommerce.cart.apps.CartsConfig',
+    'ecommerce.orders.apps.OrdersConfig',
+    'ecommerce.profiles.apps.ProfilesConfig',
+    'ecommerce.users.apps.UsersConfig',
+]
 
 DJANGO_APPS = [
     'django.contrib.admin',

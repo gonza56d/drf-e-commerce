@@ -13,4 +13,4 @@ class UsersAPIView(APIView):
         if not serializer.is_valid():
             pass
         user = serializer.save()
-        return
+        return user

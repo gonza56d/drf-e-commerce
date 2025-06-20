@@ -27,10 +27,13 @@ SECRET_KEY = environ.get('DJANGO_SECRET_KEY')
 
 # Application definition
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
+]
 ECOMMERCE_APPS = [
     'ecommerce.authentication.apps.AuthenticationConfig',
-    'ecommerce.cart.apps.CartsConfig',
+    'ecommerce.carts.apps.CartsConfig',
     'ecommerce.orders.apps.OrdersConfig',
     'ecommerce.profiles.apps.ProfilesConfig',
     'ecommerce.users.apps.UsersConfig',
@@ -46,6 +49,10 @@ DJANGO_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + ECOMMERCE_APPS
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

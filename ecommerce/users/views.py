@@ -17,19 +17,25 @@ class UserViewSet(
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    def get_serializer_class(self):
-        if self.action == 'create':
-            return UserSignUpSerializer
-        return UserSerializer
-
     @extend_schema(
         request=UserSignUpSerializer,
         responses={201: UserSignUpSerializer, 400: None},
     )
     def create(self, request: Request) -> Response:
         """Sign up a new user."""
-        serializer = self.serializer_class(data=request.data)
+        serializer = UserSignUpSerializer(data=request.data)
         if not serializer.is_valid():
-            pass
+            return Response(
+                status=400,
+                data={
+                    k: [
+                        {
+                            'message': str(error_detail).capitalize(),
+                            'code': error_detail.code,
+                        } for error_detail in v
+                    ] for k, v in serializer.errors.items()
+                }
+            )
         serializer.save()
-        return Response(serializer.data, status=201)
+        request.data['password'] = '***'
+        return Response(request.data, status=201)

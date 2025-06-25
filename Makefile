@@ -1,7 +1,4 @@
 up:
-	docker compose up
-
-debug:
 	docker compose run --rm --service-ports ecommerce
 
 build:
